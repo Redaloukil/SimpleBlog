@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+    
+    <div class="container-fluid">
+        
+        {% for obj in posts %}
+            <div class="post">
+                <h2><a href="{% url "detail" id=obj.id %}">{{obj.title}}</a></h2>
+                {% if obj.image %}
+                <img src="{{obj.image.url}}">
+                {% endif %}
+                <p>{{obj.content}}</p>
+                <h5>{{obj.author}}</h5>
+                <h6>{{obj.updated}}</h6>
+                {% if request.user.is_authenticated %}
+                    <a href="{% url "update" id=obj.id %}">update the post</a>
+                    <a href="{% url "delete" id=obj.id %}">delete this post</a>
+                {% endif %}
+            </div>
+        {% endfor %}           
+    </div>
+    
+{% endblock%}
+

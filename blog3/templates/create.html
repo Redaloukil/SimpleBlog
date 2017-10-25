@@ -1,0 +1,15 @@
+{% extends "base.html"%}
+
+{% block content%}
+    <form class="create-form"method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="text" placeholder="title">
+        <textarea class="content-input" name="content" placeholder="content"></textarea>
+        <input type="image" name="image" placeholder="choose article image"> 
+        <button type="submit" class="">Submit</button>
+    </form>
+
+
+{% endblock %}
+
+
