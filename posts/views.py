@@ -4,8 +4,8 @@ import json
 from time import time
 from django.contrib import messages
 from django.shortcuts import render, get_object_or_404 , redirect
-from models import Post
-from forms import PostModelForm
+from .models import Post
+from .forms import PostModelForm
 
 # Create your views here.
 
@@ -37,24 +37,7 @@ def create(request):
         messages.success(request,"article has been done", extra_tags='some-tag')
         return redirect("home")
     return render(request,'create.html')
-#     title ="Create Article"
-#     form = PostModelForm(request.POST or None , request.FILES or None)
-#     if form.is_valid():
-#         instance = form.save(commit = False)
-#         instance.save()
-         
-#         messages.success(request,"article has been done", extra_tags='some-tag')
-#         return redirect("home")
-#     # if request.method == 'POST':
-#     #     title = request.POST.get("title")
-#     #     content = request.POST.get("content")
-#     #     article = Post.objects.create(title = title , content = content)
-#     #     article.save()
-#     context = {
-#         'form':form,
-#         'title':title,
-#         }
-#     return render(request,'create.html', context)
+
 
 def update(request,id):
     post = get_object_or_404( Post, id = id)
@@ -77,4 +60,4 @@ def delete(request,id):
     return redirect("home")
 
 def about(request):
-    return render(request,"about.html",{})
+    return render(request,"about.html")
